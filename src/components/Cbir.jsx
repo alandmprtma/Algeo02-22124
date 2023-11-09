@@ -2,6 +2,7 @@ import React from 'react'
 import Bg from'../assets/background-website.jpg'
 import logo from '../assets/ga-reela-high-resolution-logo-white-transparent-crop.png'
 import upload from '../assets/upload-icons-white.png'
+import ImageUploader from './ImageUploader'
 
 const Cbir = () => {
   return (
@@ -24,6 +25,7 @@ const Cbir = () => {
        <div className='rounded my-2 w-[175px] h-[35px] relative 
           before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
           after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
+            <ImageUploader/>
             <p className='font-inter-bold text-xl text-white z-10'>Search</p>
           </div>
         </div>
