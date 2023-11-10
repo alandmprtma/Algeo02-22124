@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# Ignore backend database folder
+/backend/database/
+
 # production
 /build
 

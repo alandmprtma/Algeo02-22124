@@ -31,14 +31,18 @@ function ImageUploader() {
   };
 
   return (
-    <div>
-      {/* <nav>
-        <button>
-          <Link to="/">Home</Link>
-        </button>
-      </nav> */}
+    // <div>
+    //   {/* <nav>
+    //     <button>
+    //       <Link to="/">Home</Link>
+    //     </button>
+    //   </nav> */}
+    //   <input type="file" onChange={onFileChange} />
+    //   <button onClick={onUpload}>Unggah Gambar</button>
+    // </div>
+    <div className='flex flex-col items-center mt-[150px]'>
       <input type="file" onChange={onFileChange} />
-      <button onClick={onUpload}>Unggah Gambar</button>
+      <button className='rounded-[20px] bg-primary text-white py-2 px-4 mt-4' onClick={onUpload}>Unggah Gambar</button>
     </div>
   );
 }
