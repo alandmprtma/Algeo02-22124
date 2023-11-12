@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel
+from typing import List
 from starlette.exceptions import HTTPException
 import os
 
@@ -17,6 +18,7 @@ app.add_middleware(
 )
 
 UPLOAD_FOLDER = "backend/uploads/"
+UPLOAD_DATASET_FOLDER = "src/database/"
 
 @app.on_event("startup")
 async def startup_event():
@@ -41,3 +43,14 @@ async def upload_file(file: UploadFile):
         f.write(file.file.read())
     
     return JSONResponse(content={"message": "Gambar berhasil diunggah."})
+
+@app.post("/upload-dataset")
+async def upload_dataset(files: List[UploadFile] = File(...)):
+    for file in files:
+        if not is_image(file.filename):
+            raise HTTPException(status_code=400, detail="Berkas yang diunggah bukan gambar")
+        file_path = os.path.join(UPLOAD_DATASET_FOLDER, file.filename)
+
+        with open(file_path, "wb") as f:
+            f.write(file.file.read())
+    return JSONResponse(content={"message" : "Dataset berhasil diunggah"})
