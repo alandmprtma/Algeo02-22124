@@ -2,10 +2,12 @@ from joblib import Parallel, delayed
 import csv
 import glob
 import cv2
+import time
 
 from color_descriptor import ColorDescriptor
 from color_searcher import ColorSearcher
 
+start_time = time.perf_counter()
 # Inisialisasi ColorDescriptor dan Searcher dengan parameter yang sesuai
 cd = ColorDescriptor((8, 12, 3), blocks=4)
 searcher = ColorSearcher(indexPath="src/conf/conf.csv", blocks=4)  # Inisiasi ColorSearcher dengan path indeks di src
@@ -13,7 +15,7 @@ searcher = ColorSearcher(indexPath="src/conf/conf.csv", blocks=4)  # Inisiasi Co
 output_path = "src/conf/conf.csv" # Lokasi hasil ekstraksi gambar di dataset
 
 def process_image(imagePath):
-    imageID = imagePath[imagePath.rfind("/") + 1:] # Mendapatkan ID gambar dari path
+    imageID = imagePath[imagePath.rfind("\\") + 1:] # Mendapatkan ID gambar dari path
     image = cv2.imread(imagePath) # Membaca gambar menggunakan OpenCV
 
     # Gunakan describe dari ColorDescriptor untuk mendapatkan vektor fitur
@@ -32,3 +34,7 @@ with open(output_path, 'w', newline='') as csvfile: # Penulisan file CSV
     for result in results:
         writer.writerow([result['imageID']] + result['features'])
 
+end_time = time.perf_counter()
+
+elapsed_time = end_time - start_time
+print(f"Elapsed time: {elapsed_time}")

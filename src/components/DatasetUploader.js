@@ -39,7 +39,7 @@ const DatasetUploader = () => {
   return (
     <div>
       <h3>Dataset Uploader</h3>
-      <input type='file' multiple onChange={handleFileChange} />
+      <input type='file' directory="" webkitdirectory="" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload Dataset</button>
     </div>
   );
