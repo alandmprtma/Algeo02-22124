@@ -12,7 +12,7 @@ cd = ColorDescriptor((8, 12, 3)) # Inisiasi ColorDescriptor dengan tuple paramet
 query = cv2.imread(gambar) # Membaca gambar query dengan OpenCV
 features = cd.describe(query) # Mendeskripsikan fitur warna dari gambar query dengan ColorDescriptor
 
-searcher = ColorSearcher('src/conf/conf.csv') # Inisiasi ColorSearcher dengan path indeks di src
+searcher = ColorSearcher('src/conf/conf_color.csv') # Inisiasi ColorSearcher dengan path indeks di src
 results = searcher.search(features) # Melakukan pencarian kemiripan fitur dengan fitur query
 
 # cv2.imshow("Gambar yang dicari", query) # Menampilkan gambar query
