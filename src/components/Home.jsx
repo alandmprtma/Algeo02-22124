@@ -11,7 +11,7 @@ const Home = () => {
       <h1 className='font-inter-bold text-4xl text-white mt-[65px]'>What is Ga-Reela?</h1>
       <h3 className='font-inter text-2xl text-white mx-[30px]'>Ga-Reela is a project that we designed in order to fulfill our second major assignment in the Linear Algebra and Geometry course. This project focuses on the implementation of Content Based Image Retrieval (CBIR) techniques.</h3>
       <article className='flex flex-col w-[80%] gap-x-4 justify-center mt-10 items-center'>
-        <div className='rounded my-[50px] w-[90%] h-[500px] relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[10px] after:-z-1 flex items-center justify-center after:rounded'>
+        <div className='rounded my-[50px] w-[90%] h-[550px] relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[10px] after:-z-1 flex items-center justify-center after:rounded'>
             <div className='relative z-10 bg-primary rounded w-[99.9%] h-[99.9%] p-4 flex items-center flex-col text-white'>
             <div className='flex flex-col w-[90%]'>
                 <h3 className='font-inter-bold text-3xl text-white'>Project Overview (CBIR)</h3>
@@ -22,16 +22,16 @@ const Home = () => {
             </div>
             </div>
         </div>
-        <div className='rounded my-[50px] w-[90%] h-[600px] relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[10px] after:-z-1 flex items-center justify-center after:rounded'>
+        <div className='rounded my-[50px] w-[90%] h-[650px] relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[10px] after:-z-1 flex items-center justify-center after:rounded'>
             <div className='relative z-10 bg-primary rounded w-[99.9%] h-[99.9%] p-4 flex flex-col text-white'>
                 <div className='flex items-start'>
                 <h3 className='font-inter-bold text-3xl text-white mx-[30px]'>We Can See What You Can't See</h3>
                 </div>
                 <div className='flex flex-row justify-center'>
-                  <div className='translate-x-[-150px]'>
+                  <div className='translate-x-[-100px]'>
                     <Cybereye/>
                   </div>
-                  <div className='ml-[200px] text-left translate-x-[100px] w-[700px]'>
+                  <div className='ml-[200px] text-left translate-x-[100px] w-[500px]'>
                   <h3 className='font-inter-bold text-xl text-white mt-[40px]'>Color Techniques</h3>
                   <p className='font-inter text-l text-white mt-[6px] text-justify'>A color histogram is the frequency of various colors in a certain color space. This is done to distribute the colors of the image. In histogram calculations, HSV global colors are preferred because these colors can be used on paper (white background) which is more commonly used. The RGB value must be normalized by changing the value range [0, 255] to [0, 1]. After getting the HSV value, compare the image from the input with the dataset using cosine similarity.</p>
                   <h3 className='font-inter-bold text-xl text-white mt-[30px]'>Texture Techniques</h3>

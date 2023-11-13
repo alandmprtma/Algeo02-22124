@@ -8,6 +8,29 @@ function CameraUploader() {
   const [imageData, setImageData] = useState(null);
   const [cameraStarted, setCameraStarted] = useState(false);
 
+  useEffect(() => {
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        videoRef.current.srcObject = stream;
+      } catch (error) {
+        console.error('Error accessing camera:', error);
+      }
+    };
+
+    startCamera();
+
+    return () => {
+      if (videoRef.current) {
+        const stream = videoRef.current.srcObject;
+        if (stream) {
+          const tracks = stream.getTracks();
+          tracks.forEach((track) => track.stop());
+          videoRef.current.srcObject = null;
+        }
+      }
+    };
+  }, []); 
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -49,7 +72,7 @@ function CameraUploader() {
       const blob = await fetch(imageData).then((r) => r.blob());
 
       const formData = new FormData();
-      formData.append('file', blob, 'captured.jpg');
+      formData.append('file', blob, 'uploaded.jpg');
 
       try {
         await axios.post('http://localhost:8000/upload', formData, {
@@ -67,6 +90,7 @@ function CameraUploader() {
   return (
     <div>
       <h3>Camera Uploader</h3>
+      <button className='text-white font-inter' onClick={takePicture}>Take Picture</button>
       {!cameraStarted ? (
         <button onClick={startCamera}>Start Camera</button>
       ) : (
@@ -75,8 +99,7 @@ function CameraUploader() {
       <button onClick={takePicture}>Take Picture</button>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <video ref={videoRef} autoPlay />
-      <img src={imageData} alt="Captured" style={{ width: '200px' }} />
-      {imageData && <button onClick={uploadPicture}>Upload Picture</button>}
+      {imageData && <button className='text-white font-inter' onClick={uploadPicture}>Upload Picture</button>}
     </div>
   );
 }
