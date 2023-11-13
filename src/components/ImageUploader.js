@@ -11,16 +11,39 @@ function ImageUploader() {
   };
 
   const onUpload = async () => {
+    // if (file) {
+    //   const formData = new FormData();
+    //   formData.append('file', file, "uploaded.jpg");
+
+    //   try {
+    //     await axios.post('http://localhost:8000/upload', formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     });
+    //     alert('Gambar berhasil diunggah.');
+    //   } catch (error) {
+    //     console.error('Error mengunggah gambar:', error);
+    //   }
+    // } else {
+    //   alert('Pilih sebuah gambar terlebih dahulu.');
+    // }
     if (file) {
       const formData = new FormData();
       formData.append('file', file, "uploaded.jpg");
-
+  
       try {
-        await axios.post('http://localhost:8000/upload', formData, {
+        // Mengirim gambar ke backend
+        const response = await axios.post('http://localhost:8000/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
+  
+        // Handle hasil ekstraksi fitur dari backend
+        const extractedFeatures = response.data.features;
+        console.log('Fitur yang diekstraksi:', extractedFeatures);
+  
         alert('Gambar berhasil diunggah.');
       } catch (error) {
         console.error('Error mengunggah gambar:', error);

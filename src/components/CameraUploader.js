@@ -6,6 +6,7 @@ function CameraUploader() {
   const canvasRef = useRef(null);
 
   const [imageData, setImageData] = useState(null);
+  const [cameraStarted, setCameraStarted] = useState(false);
 
   useEffect(() => {
     const startCamera = async () => {
@@ -30,6 +31,27 @@ function CameraUploader() {
       }
     };
   }, []); 
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      videoRef.current.srcObject = stream;
+      setCameraStarted(true);
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+    }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current) {
+      const stream = videoRef.current.srcObject;
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+        videoRef.current.srcObject = null;
+      }
+    }
+    setCameraStarted(false);
+  };
 
   const takePicture = () => {
     if (videoRef.current) {
@@ -69,6 +91,12 @@ function CameraUploader() {
     <div>
       <h3>Camera Uploader</h3>
       <button className='text-white font-inter' onClick={takePicture}>Take Picture</button>
+      {!cameraStarted ? (
+        <button onClick={startCamera}>Start Camera</button>
+      ) : (
+        <button onClick={stopCamera}>Stop Camera</button>
+      )}
+      <button onClick={takePicture}>Take Picture</button>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <video ref={videoRef} autoPlay />
       {imageData && <button className='text-white font-inter' onClick={uploadPicture}>Upload Picture</button>}
