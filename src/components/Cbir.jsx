@@ -65,27 +65,29 @@ const Cbir = () => {
             <p className='font-inter-bold text-xl text-white z-10'>Search</p>
           </div>
         </div>
-        < DatasetUploader />
-        <div className="w-[275px]">
-          <p className="font-inter-bold mt-7 text-2xl text-white text-left">Image Input</p>
-          <div className="flex flex-col items-center mt-[150px]">
-            <div
-              className="rounded my-2 w-[175px] h-[35px] relative"
-            >
-              {/* ... */}
-              <button
-                className="font-inter-bold text-xl text-white z-10"
-                onClick={toggleUploadMode}
-              >
-                {uploadMode === 'image' ? 'Switch to Camera' : 'Switch to Image'}
-              </button>
-            </div>
-          </div>
-        </div>
+      </div>
       </article>
-      {/* ... */}
-    </section>
-  );
-};
+      <article className='w-[80%] flex flex-col items-center'>
+       <div className="bg-white h-[2px] w-full"/>
+       <div className=" flex flex-row relative h-[900px] w-full justify-between">
+        <div className='flex items-start h-[25px]'>
+        <h2 className='font-inter-bold text-xl text-white mt-6'> Result : </h2>
 
-export default Cbir;
+       </div>
+       <div>
+        <h2 className='font-inter text-xl text-white mt-6'> 20 results in 0.20 seconds</h2>
+      </div>
+       </div>
+       <div className="bg-white h-[2px] w-full"/>
+       <div className='rounded mt-8 mb-10 w-[250px] h-[35px] relative 
+          before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
+          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
+            <p className='font-inter-bold text-xl text-white z-10'>Upload Dataset</p>
+          </div>
+      </article>
+    </section>
+    
+  )
+}
+
+export default Cbir
