@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 function CameraUploader() {
@@ -7,34 +7,42 @@ function CameraUploader() {
 
   const [imageData, setImageData] = useState(null);
 
-  const startCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoRef.current.srcObject = stream;
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-    }
-  };
+  useEffect(() => {
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        videoRef.current.srcObject = stream;
+      } catch (error) {
+        console.error('Error accessing camera:', error);
+      }
+    };
 
-  const stopCamera = () => {
-    const stream = videoRef.current.srcObject;
-    if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach((track) => track.stop());
-      videoRef.current.srcObject = null;
-    }
-  };
+    startCamera();
+
+    return () => {
+      if (videoRef.current) {
+        const stream = videoRef.current.srcObject;
+        if (stream) {
+          const tracks = stream.getTracks();
+          tracks.forEach((track) => track.stop());
+          videoRef.current.srcObject = null;
+        }
+      }
+    };
+  }, []); 
 
   const takePicture = () => {
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
+    if (videoRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-    const dataUrl = canvas.toDataURL('image/jpeg');
-    setImageData(dataUrl);
+      const dataUrl = canvas.toDataURL('image/jpeg');
+      setImageData(dataUrl);
+    }
   };
 
   const uploadPicture = async () => {
@@ -42,7 +50,7 @@ function CameraUploader() {
       const blob = await fetch(imageData).then((r) => r.blob());
 
       const formData = new FormData();
-      formData.append('file', blob, 'captured.jpg');
+      formData.append('file', blob, 'uploaded.jpg');
 
       try {
         await axios.post('http://localhost:8000/upload', formData, {
@@ -60,18 +68,10 @@ function CameraUploader() {
   return (
     <div>
       <h3>Camera Uploader</h3>
-      {/* <nav>
-        <button>
-            <Link to="/">Home</Link>
-        </button>
-      </nav> */}
-      <button onClick={startCamera}>Start Camera</button>
-      <button onClick={takePicture}>Take Picture</button>
-      <button onClick={stopCamera}>Stop Camera</button>
+      <button className='text-white font-inter' onClick={takePicture}>Take Picture</button>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <video ref={videoRef} autoPlay />
-      <img src={imageData} alt="Captured" style={{ width: '200px' }} />
-      {imageData && <button onClick={uploadPicture}>Upload Picture</button>}
+      {imageData && <button className='text-white font-inter' onClick={uploadPicture}>Upload Picture</button>}
     </div>
   );
 }
