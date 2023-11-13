@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-UPLOAD_FOLDER = "backend/uploads/"
+UPLOAD_FOLDER = "src/uploads/"
 
 @app.on_event("startup")
 async def startup_event():
