@@ -9,6 +9,9 @@
 /coverage
 
 # Ignore backend folder
+/src/database/
+/src/conf/
+/src/uploads/
 
 # production
 /build
