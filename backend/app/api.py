@@ -44,7 +44,7 @@ async def upload_file(file: UploadFile):
     with open(file_path, "wb") as f:
         f.write(file.file.read())
     
-    return JSONResponse(content={"message": "Gambar berhasil diunggah."})
+    # return JSONResponse(content={"message": "Gambar berhasil diunggah."})
 
 @app.post("/upload-dataset")
 async def upload_dataset(files: List[UploadFile] = File(...)):
