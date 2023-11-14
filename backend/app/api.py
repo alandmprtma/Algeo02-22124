@@ -68,6 +68,6 @@ async def upload_dataset(files: List[UploadFile] = File(...)):
             f.write(file.file.read())
     
     # Jalankan skrip python setelah file diupload
-    subprocess.run(["python", "backend/color_feature/database_color_init.py"], check=True)
+    subprocess.run(["python", "backend/feature/database_init.py"], check=True)
 
     return JSONResponse(content={"message" : "Dataset berhasil diunggah"})
