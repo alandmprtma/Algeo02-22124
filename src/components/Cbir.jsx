@@ -7,6 +7,12 @@ import ImageUploader from './ImageUploader'
 import CameraUploader from './CameraUploader'
 import { useState } from 'react';
 import Switch from './Switch'
+import DatasetUploader from './DatasetUploader'
+import Pagination from './Pagination.jsx'
+import aland from '../assets/Aland.jpg'
+import foto1 from '../assets/foto1.png'
+import qika from '../assets/qika.jpg'
+import ikhwan from '../assets/ikhwan.jpg'
 
 
 
@@ -22,6 +28,8 @@ const Cbir = () => {
     // Logic to handle image upload and set it in state
     setUploadedImage(image);
   };
+
+  const images = [foto1, aland, ikhwan, qika];
 
   return (
     <section className='text-center flex flex-col items-center gap-y-4 pt-8'>
@@ -71,19 +79,17 @@ const Cbir = () => {
        <div className="bg-white h-[2px] w-full"/>
        <div className=" flex flex-row relative h-[900px] w-full justify-between">
         <div className='flex items-start h-[25px]'>
-        <h2 className='font-inter-bold text-xl text-white mt-6'> Result : </h2>
-
+        <h2 className='font-inter-bold text-xl text-white mt-6 h-fit'> Result : </h2>
        </div>
        <div>
-        <h2 className='font-inter text-xl text-white mt-6'> 20 results in 0.20 seconds</h2>
-      </div>
+        <h2 className='font-inter text-xl text-white mt-6 h-fit'> 20 results in 0.20 seconds</h2>
        </div>
+      </div>
        <div className="bg-white h-[2px] w-full"/>
-       <div className='rounded mt-8 mb-10 w-[250px] h-[35px] relative 
-          before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
-          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
-            <p className='font-inter-bold text-xl text-white z-10'>Upload Dataset</p>
-          </div>
+       <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
+           <DatasetUploader/>
+        </div>
+        <div className='h-[100px] w-full'/>
       </article>
     </section>
     
