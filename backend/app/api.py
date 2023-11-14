@@ -8,6 +8,8 @@ from starlette.exceptions import HTTPException
 import os
 import shutil
 import subprocess
+import requests
+from bs4 import BeautifulSoup
 
 app = FastAPI()
 
@@ -43,12 +45,11 @@ async def upload_file(file: UploadFile):
     
     with open(file_path, "wb") as f:
         f.write(file.file.read())
-    
-    # return JSONResponse(content={"message": "Gambar berhasil diunggah."})
+    subprocess.run(["python", "backend/feature/color_runner.py"], check=True)
+    subprocess.run(["python", "backend/feature/texture_runner.py"], check=True)
 
 @app.post("/upload-dataset")
 async def upload_dataset(files: List[UploadFile] = File(...)):
-    # Hapus semua file dalam direktori
     for filename in os.listdir(UPLOAD_DATASET_FOLDER):
         file_path = os.path.join(UPLOAD_DATASET_FOLDER, filename)
         try:
@@ -67,7 +68,24 @@ async def upload_dataset(files: List[UploadFile] = File(...)):
         with open(file_path, "wb") as f:
             f.write(file.file.read())
     
-    # Jalankan skrip python setelah file diupload
     subprocess.run(["python", "backend/feature/database_init.py"], check=True)
 
     return JSONResponse(content={"message" : "Dataset berhasil diunggah"})
+
+@app.post("/scrape")
+async def scrape_images(url: str):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    images = soup.find_all('img')
+
+    for i, image in enumerate(images):
+        img_url = image['src']
+        response = requests.get(img_url, stream=True)
+
+        if response.status_code == 200:
+            file_path = os.path.join(UPLOAD_DATASET_FOLDER, f'image_{i}.jpg')
+
+            with open(file_path, 'wb') as out_file:
+                shutil.copyfileobj(response.raw, out_file)
+
+    return JSONResponse(content={"message" : "Images scraped successfully"})

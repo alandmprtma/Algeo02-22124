@@ -21,17 +21,19 @@ searcher = TextureSearcher('src/conf/conf_texture.csv')
 # Melakukan pencarian kemiripan fitur dengan fitur query
 results = searcher.search(features)
 
-i = 0
-with open('src/conf/result.csv', 'w', newline='') as file:
+match = 0
+with open('src/conf/result_texture.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Nama File", "Persentase Kemiripan"])
     for (score, resultID) in results:
         if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
-            print(i)
-            i += 1
+            match += 1
             writer.writerow([resultID, f"{math.floor(score * 100):.2f}%"])
 
 end_time = time.perf_counter()
-
 elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time}")
+
+with open('src/conf/time_texture.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Elapsed Time", "Number of Matches"])
+    writer.writerow([elapsed_time, match])

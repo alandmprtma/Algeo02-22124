@@ -17,8 +17,8 @@ results = searcher.search(features) # Melakukan pencarian kemiripan fitur dengan
 
 # cv2.imshow("Gambar yang dicari", query) # Menampilkan gambar query
 
-i = 0
-with open('src/conf/result.csv', 'w', newline='') as file:
+match = 0
+with open('src/conf/result_color.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Nama File", "Persentase Kemiripan"])
     for (score, resultID) in results:
@@ -27,10 +27,11 @@ with open('src/conf/result.csv', 'w', newline='') as file:
             # cv2.imshow("Hasil", result) # Menampilkan hasil
             # print(f"Kemiripan: {math.floor(score * 100):.2f}%") # Menampilkan persentase kemiripan
             writer.writerow([resultID, f"{math.floor(score * 100):.2f}%"])
-            print(i)
-            i += 1
+            match += 1
             # cv2.waitKey(0) # Menunggu pengguna menekan tombol
 end_time = time.perf_counter()
-
 elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time}")
+with open('src/conf/time_color.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Elapsed Time", "Number of Matches"])
+    writer.writerow([elapsed_time, match])

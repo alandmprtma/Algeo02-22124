@@ -102,7 +102,7 @@ function CameraUploader() {
       )}
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <video ref={videoRef} autoPlay />
-      <img src={imageData} alt="Captured" style={{ width: '200px' }} />
+      {/* <img src={imageData} alt="Captured" style={{ width: '200px' }} /> */}
     </div>
   );
 }

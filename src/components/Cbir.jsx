@@ -8,11 +8,12 @@ import CameraUploader from './CameraUploader'
 import { useState } from 'react';
 import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
-import Pagination from './Pagination.jsx'
+// import Pagination from './Pagination.jsx'
 import aland from '../assets/Aland.jpg'
 import foto1 from '../assets/foto1.png'
 import qika from '../assets/qika.jpg'
 import ikhwan from '../assets/ikhwan.jpg'
+import WebScraper from './WebScraper'
 
 
 
@@ -88,6 +89,7 @@ const Cbir = () => {
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
            <DatasetUploader/>
+           <WebScraper/>
         </div>
         <div className='h-[100px] w-full'/>
       </article>
