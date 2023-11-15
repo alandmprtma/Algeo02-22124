@@ -1,6 +1,6 @@
 from texture_searcher import TextureSearcher
 import cv2
-import csv
+import json
 import time
 import math
 import texture_descriptor
@@ -22,18 +22,19 @@ searcher = TextureSearcher('src/conf/conf_texture.csv')
 results = searcher.search(features)
 
 match = 0
-with open('src/conf/result_texture.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(["Nama File", "Persentase Kemiripan"])
-    for (score, resultID) in results:
-        if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
-            match += 1
-            writer.writerow([resultID, f"{math.floor(score * 100):.2f}%"])
+result_texture = []
+for (score, resultID) in results:
+    if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
+        match += 1
+        result_texture.append({"Nama File": resultID, "Persentase Kemiripan": f"{math.floor(score * 100):.2f}%"})
+
+with open('src/conf/result_texture.json', 'w') as file:
+    json.dump(result_texture, file, indent=4)
 
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
-with open('src/conf/time_texture.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(["Elapsed Time", "Number of Matches"])
-    writer.writerow([elapsed_time, match])
+time_texture = {"Elapsed Time": elapsed_time, "Number of Matches": match}
+
+with open('src/conf/time_texture.json', 'w') as file:
+    json.dump(time_texture, file, indent=4)
