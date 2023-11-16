@@ -1,0 +1,14 @@
+{
+    "images": [
+      {
+        "name": "IMG_7319.JPG",
+        "url": "../conf/IMG_7319.JPG",
+        "similarity": 90
+      },
+      {
+        "name": "IMG_7320.JPG",
+        "url": "../conf/IMG_7320.JPG",
+        "similarity": 95
+      }
+    ]
+  }

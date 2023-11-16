@@ -8,17 +8,39 @@ import CameraUploader from './CameraUploader'
 import { useState } from 'react';
 import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
-import Pagination from './Pagination.jsx'
-import aland from '../assets/Aland.jpg'
-import foto1 from '../assets/foto1.png'
-import qika from '../assets/qika.jpg'
-import ikhwan from '../assets/ikhwan.jpg'
-
-
+import MainPagination from './MainPagination'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadDataset, setUploadDataset] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const images = {};
+
+  const importAllImages = (context) => {
+    context.keys().forEach((key) => {
+      const imageName = key.replace('./', '').replace('.jpg', '');
+      images[imageName] = context(key).default;
+    });
+  };
+
+  importAllImages(require.context('../database', false, /\.jpg$/));
+
+  const itemsPerPage = 12 
+
+  const pageCount = Math.ceil((Object.keys(images)?.length || 0) / itemsPerPage);
+
+  const displayedFiles = Object.keys(images)
+    ? Object.keys(images).slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage
+      )
+    : [];
+
+    const handlePageClick = (data) => {
+      setCurrentPage(data.selected);
+    };
 
   const toggleUploadMode = () => {
     setUploadMode((prevMode) => (prevMode === 'image' ? 'camera' : 'image'));
@@ -29,7 +51,7 @@ const Cbir = () => {
     setUploadedImage(image);
   };
 
-  const images = [foto1, aland, ikhwan, qika];
+  // const images = [foto1, aland, ikhwan, qika];
 
   return (
     <section className='text-center flex flex-col items-center gap-y-4 pt-8'>
@@ -84,10 +106,11 @@ const Cbir = () => {
        <div>
         <h2 className='font-inter text-xl text-white mt-6 h-fit'> 20 results in 0.20 seconds</h2>
        </div>
+       <MainPagination/>
       </div>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
-           <DatasetUploader/>
+           <DatasetUploader />
         </div>
         <div className='h-[100px] w-full'/>
       </article>
