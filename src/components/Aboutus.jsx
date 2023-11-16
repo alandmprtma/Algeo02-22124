@@ -1,9 +1,11 @@
 import React from 'react'
 import foto1 from '../assets/foto1.png'
+import asistenLeon from '../assets/asistenLeon.jpg'
 import qika from '../assets/qika.jpg'
 import aland from '../assets/Aland.jpg'
 import Ikhwan from '../assets/ikhwan.jpg'
 import Bg from'../assets/background-website.jpg'
+import PakRila from '../assets/rilamandala-d48f6.jpg'
 
 const Aboutus = () => {
   const members = [
@@ -65,7 +67,7 @@ const Aboutus = () => {
           <div className='relative z-10 bg-primary rounded w-[99%] h-[99%] p-4 flex items-center flex-col text-white'>
             <h2 className='font-inter-bold text-2xl'>Lecturer</h2>
             <h3 className='font-inter text-l'>Linear Algebra and Geometry</h3>
-            <img src={foto1} className='h-[150px] w-[150px] rounded-full object-cover mt-8'/>
+            <img src={PakRila} className='h-[150px] w-[150px] rounded-full object-cover mt-8'/>
             <p className='font-inter-bold mt-7'>Ir. Rila Mandala, M.Eng., Ph.D.</p>
 
           </div>
@@ -76,7 +78,7 @@ const Aboutus = () => {
           <div className='relative z-10 bg-primary rounded w-[99%] h-[99%] p-4 flex items-center flex-col text-white '>
           <h2 className='font-inter-bold text-2xl'>Project Assistant</h2>
           <h3 className='font-inter text-l'>IRK Lab Assistance</h3>
-          <img src={foto1} className='h-[150px] w-[150px] rounded-full object-cover mt-8'/>
+          <img src={asistenLeon} className='h-[150px] w-[150px] rounded-full object-cover mt-8'/>
           <p className='font-inter-bold mt-4'>Michael Leon Putra Widhi</p>
           <p className='font-inter'>13521108</p>
           </div>

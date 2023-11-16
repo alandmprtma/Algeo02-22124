@@ -16,6 +16,7 @@ import ImageScraper from './ImageScraper'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
+  const [datasetMode, setDatasetMode] = useState('dataset'); // 'dataset' or 'scrapper'
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadDataset, setUploadDataset] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -55,6 +56,11 @@ const Cbir = () => {
   const toggleUploadMode = () => {
     setUploadMode((prevMode) => (prevMode === 'image' ? 'camera' : 'image'));
   };
+
+  const DatasetUploadMode = () => {
+    setDatasetMode((prevMode) => (prevMode === 'dataset' ? 'scrapper' : 'dataset'));
+  };
+
 
   const handleImageUpload = (image) => {
     // Logic to handle image upload and set it in state
@@ -131,12 +137,24 @@ const Cbir = () => {
             </div>
           )}
       </div>
-       <div className="bg-white h-[2px] w-full"/>
+       <div className="bg-white h-[2px] w-full mt-4"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
-           <DatasetUploader />
-           <ImageScraper/>
-        </div>
-        <div className='h-[100px] w-full'/>
+       {datasetMode === 'dataset' ? (
+               <DatasetUploader />
+              ) : (
+                <div className='translate-x-[-115px]'>
+                <ImageScraper/>
+                </div>
+              )}
+      <div className='rounded my-[25px] w-[250px] h-[35px] relative 
+          before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
+          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
+        <button className={`font-inter-bold text-xl hover:scale-105 cursor-pointer transition-all text-white z-10 ${datasetMode === 'dataset'}`} onClick={DatasetUploadMode}> 
+        {datasetMode === 'dataset' ? 'Switch to Scrapper' : 'Switch to Dataset'}
+      </button>
+      </div>
+      </div>
+      <div className='h-[150px] w-full'/>
       </article>
     </section>
     

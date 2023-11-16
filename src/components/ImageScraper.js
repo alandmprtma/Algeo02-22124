@@ -21,11 +21,13 @@ const ImageScraper = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row' }}>
-        <label>
-          Input:
-          <input type="text" value={input} onChange={handleChange} />
+        <label className='w-[500px] font-inter-bold text-xl text-white mb-[20px]'>
+          <div className='mb-[20px]'>Image Scrapper</div>
+          <input className='w-[500px] rounded-[10px] border-2 border-green-600' type="text" value={input} onChange={handleChange} />
         </label>
-        <button type="submit" style={{ marginLeft: '10px' }}>Submit</button>
+        <div className = 'rounded my-[25px] w-[250px] h-[35px] relative before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px] after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px] translate-x-[20px] translate-y-[20px]'>
+        <button type="submit" className='font-inter-bold text-white text-l z-10 translate-x-[-4px] hover:scale-105 cursor-pointer transition-all' style={{ marginLeft: '10px' }}>  Submit </button>
+        </div>
       </form>
     </div>
   );
