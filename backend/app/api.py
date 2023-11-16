@@ -72,7 +72,6 @@ async def upload_dataset(files: List[UploadFile] = File(...)):
             f.write(file.file.read())
     
     subprocess.run(["python", "backend/feature/database_init.py"], check=True)
-
     return JSONResponse(content={"message" : "Dataset berhasil diunggah"})
 
 class Item(BaseModel):
@@ -116,5 +115,7 @@ async def scrape_images(item: Item):
             return JSONResponse(content={"message" : f"Error downloading image from {image_url}: {str(e)}"})
 
     subprocess.run(["python", "backend/feature/database_init.py"], check=True)
+    subprocess.run(["python", "backend/feature/color_runner.py"], check=True)
+    subprocess.run(["python", "backend/feature/texture_runner.py"], check=True)
     
     return JSONResponse(content={"message" : "Images scraped successfully"})

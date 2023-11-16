@@ -12,7 +12,7 @@ import MainPagination from './MainPagination'
 import dataJSON from '../conf/hasil.json'
 import dataColor from '../conf/result_color.json'
 import dataTexture from '../conf/result_texture.json'
-import imageScraper from './ImageScraper'
+import ImageScraper from './ImageScraper'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
@@ -131,10 +131,10 @@ const Cbir = () => {
             </div>
           )}
       </div>
-      <imageScraper/>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
            <DatasetUploader />
+           <ImageScraper/>
         </div>
         <div className='h-[100px] w-full'/>
       </article>

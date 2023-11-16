@@ -13,7 +13,7 @@ query = cv2.imread(gambar) # Membaca gambar query dengan OpenCV
 features = cd.describe(query) # Mendeskripsikan fitur warna dari gambar query dengan ColorDescriptor
 
 searcher = ColorSearcher('src/conf/conf_color.csv') # Inisiasi ColorSearcher dengan path indeks di src
-results = searcher.search(features) # Melakukan pencarian kemiripan fitur dengan fitur query
+results = searcher.search(features)
 
 match = 0
 result_color = {}
@@ -22,6 +22,9 @@ for (score, resultID) in results:
         result = cv2.imread(resultID) # Membaca gambar hasil dengan OpenCV
         result_color[resultID.split('/')[-1]] = f"{math.floor(score * 100):.2f}%"
         match += 1
+
+# Mengurutkan result_color berdasarkan nilai kemiripan
+result_color = {k: v for k, v in sorted(result_color.items(), key=lambda item: float(item[1][:-1]), reverse=True)}
 
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
