@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
 import MainPagination from './MainPagination'
+import dataJSON from '../conf/hasil.json'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
@@ -25,7 +26,6 @@ const Cbir = () => {
     });
   };
 
-  importAllImages(require.context('../database', false, /\.jpg$/));
 
   const itemsPerPage = 12 
 
@@ -97,16 +97,19 @@ const Cbir = () => {
         </div>
       </div>
       </article>
-      <article className='w-[80%] flex flex-col items-center'>
+      <article className='w-[80%] flex flex-col justify-center items-center'>
        <div className="bg-white h-[2px] w-full"/>
-       <div className=" flex flex-row relative h-[900px] w-full justify-between">
+       <div className=" flex flex-col relative h-[900px] w-full justify-between">
+        <div className='flex justify-between items-center mt-4'>
         <div className='flex items-start h-[25px]'>
-        <h2 className='font-inter-bold text-xl text-white mt-6 h-fit'> Result : </h2>
+        <h2 className='font-inter-bold text-xl text-white h-fit'> Result : </h2>
        </div>
        <div>
-        <h2 className='font-inter text-xl text-white mt-6 h-fit'> 20 results in 0.20 seconds</h2>
+        <h2 className='font-inter text-xl text-white h-fit'> 20 results in 0.20 seconds</h2>
        </div>
-       <MainPagination/>
+        </div>
+        
+       <MainPagination imageData={dataJSON} />
       </div>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>

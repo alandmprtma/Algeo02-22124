@@ -1,48 +1,61 @@
-// ImagePagination.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const ImagePagination = () => {
-  const [images, setImages] = useState([]);
+const MainPagination = ({ imageData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const [images, setImages] = useState([]); // State untuk menyimpan gambar
+
+  const itemsPerPage = 6;
+  const imagesPerRow = 3;
+
+  const imageKeys = Object.keys(imageData).filter(key => key !== 'Time');
+  const totalPages = Math.ceil(imageKeys.length / itemsPerPage);
 
   useEffect(() => {
-    // Panggil endpoint backend yang menyediakan data JSON
-    axios.get('../conf/images.json')
-      .then((response) => {
-        console.log('Data dari server:', response.data);
-        setImages(response.data.images);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+    displayImages();
+  }, [currentPage]); // Menjalankan displayImages setiap kali currentPage berubah
 
-  const indexOfLastImage = currentPage * itemsPerPage;
-  const indexOfFirstImage = indexOfLastImage - itemsPerPage;
-  const currentImages = images.slice(indexOfFirstImage, indexOfLastImage);
+  const displayImages = async () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pageImages = imageKeys.slice(startIndex, endIndex);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const images = await Promise.all(pageImages.map(async (key, index) => {
+      const { default: ImageComponent } = await import(/* webpackMode: "eager" */ `../database/${key}`);
+      
+      return (
+      <div key={index} className="image-item-wrapper w-[33.33%] p-2">
+        <img
+          key={index}
+          src={ImageComponent}
+          alt={key}
+          className="image-item h-[350px] w-[350px] object-cover"
+        />
+      </div>
+      );
+    }));
+
+    // Menggunakan setState atau fungsi render kembali untuk memperbarui tampilan setelah import selesai
+    setImages(images);
+  };
+
+  const createPaginationButtons = () => {
+    return Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
+      <button
+        key={index}
+        className={`pagination-button ${currentPage === page ? 'active' : ''}`}
+        onClick={() => setCurrentPage(page)}
+      >
+        {page}
+      </button>
+    ));
+  };
 
   return (
     <div>
-      {currentImages.map((image, index) => (
-        <div key={index}>
-          <img src={image.url} alt={image.name} />
-          <p>Persentase Kemiripan: {image.similarity}%</p>
-        </div>
-      ))}
-
-      <ul>
-        {Array.from({ length: Math.ceil(images.length / itemsPerPage) }).map((_, index) => (
-          <li key={index}>
-            <button onClick={() => paginate(index + 1)}>{index + 1}</button>
-          </li>
-        ))}
-      </ul>
+      <div className="image-container">{images}</div>
+      <div className="pagination-container">{createPaginationButtons()}</div>
     </div>
   );
 };
 
-export default ImagePagination;
+export default MainPagination;
