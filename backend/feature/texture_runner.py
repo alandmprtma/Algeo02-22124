@@ -1,6 +1,6 @@
 from texture_searcher import TextureSearcher
 import cv2
-import csv
+import json
 import time
 import math
 import texture_descriptor
@@ -21,17 +21,18 @@ searcher = TextureSearcher('src/conf/conf_texture.csv')
 # Melakukan pencarian kemiripan fitur dengan fitur query
 results = searcher.search(features)
 
-i = 0
-with open('src/conf/result.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(["Nama File", "Persentase Kemiripan"])
-    for (score, resultID) in results:
-        if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
-            print(i)
-            i += 1
-            writer.writerow([resultID, f"{math.floor(score * 100):.2f}%"])
+match = 0
+result_texture = {}
+for (score, resultID) in results:
+    if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
+        match += 1
+        result_texture[resultID.split('/')[-1]] = f"{math.floor(score * 100):.2f}%"
 
 end_time = time.perf_counter()
-
 elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time}")
+
+result_texture["Elapsed Time"] = elapsed_time
+result_texture["Number of Matches"] = match
+
+with open('src/conf/result_texture.json', 'w') as file:
+    json.dump(result_texture, file, indent=4)
