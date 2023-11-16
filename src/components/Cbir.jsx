@@ -10,6 +10,7 @@ import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
 import MainPagination from './MainPagination'
 import dataJSON from '../conf/hasil.json'
+import dataColor from '../conf/result_color.json'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
@@ -109,7 +110,7 @@ const Cbir = () => {
        </div>
         </div>
         
-       <MainPagination imageData={dataJSON} />
+       <MainPagination imageData={dataColor} />
       </div>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
