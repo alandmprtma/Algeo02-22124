@@ -40,7 +40,16 @@ const MainPagination = ({ imageData }) => {
   };
 
   const createPaginationButtons = () => {
-    return Array.from({ length: totalPages }, (_, index) => index + 1).map((page, index) => (
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+        pageNumbers.push(i);
+      } else if (i === currentPage - 3 || i === currentPage + 3) {
+        pageNumbers.push('...');
+      }
+    }
+  
+    return pageNumbers.map((page, index) => (
       <button
         key={index}
         className={`pagination-button ${currentPage === page ? 'active' : ''}`}
@@ -50,6 +59,8 @@ const MainPagination = ({ imageData }) => {
       </button>
     ));
   };
+  
+  
 
   return (
     <div>

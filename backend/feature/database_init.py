@@ -12,7 +12,7 @@ output_path_color = "src/conf/conf_color.csv" # Lokasi hasil ekstraksi fitur war
 output_path_texture = "src/conf/conf_texture.csv" # Lokasi hasil ekstraksi fitur tekstur
 
 # Inisialisasi ColorDescriptor dengan parameter yang sesuai
-cd = ColorDescriptor((8, 12, 3), blocks=4)
+cd = ColorDescriptor((8, 12, 3), blocks = 2)
 
 def process_image(imagePath):
     imageID = imagePath[imagePath.rfind("\\") + 1:] # Mendapatkan ID gambar dari path

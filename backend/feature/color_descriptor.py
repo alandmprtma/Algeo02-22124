@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 class ColorDescriptor:
-    def __init__(self, bins, blocks=4): # Mengatur jumlah bins histogram dan banyak blok gambar akan dibagi
+    def __init__(self, bins, blocks = 2): # Mengatur jumlah bins histogram dan banyak blok gambar akan dibagi
         self.bins = bins
         self.blocks = blocks
 
