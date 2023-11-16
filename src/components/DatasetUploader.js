@@ -38,9 +38,12 @@ const DatasetUploader = (props) => {
 
   return (
     <div>
-      <h3>Dataset Uploader</h3>
-      <input type='file' directory="" webkitdirectory="" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload Dataset</button>
+      <input type='file' directory="" webkitdirectory="" onChange={handleFileChange} className='font-inter text-white'/>
+      <div className='rounded mt-8 mb-10 w-[250px] h-[35px] relative 
+          before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
+          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
+      <button onClick={handleUpload} className='font-inter-bold text-xl text-white z-10 hover:scale-105 cursor-pointer transition-all'>Upload Dataset</button>
+      </div>
     </div>
   );
 };
