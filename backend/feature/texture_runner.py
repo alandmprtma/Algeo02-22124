@@ -22,19 +22,17 @@ searcher = TextureSearcher('src/conf/conf_texture.csv')
 results = searcher.search(features)
 
 match = 0
-result_texture = []
+result_texture = {}
 for (score, resultID) in results:
     if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
         match += 1
-        result_texture.append({"Nama File": resultID, "Persentase Kemiripan": f"{math.floor(score * 100):.2f}%"})
-
-with open('src/conf/result_texture.json', 'w') as file:
-    json.dump(result_texture, file, indent=4)
+        result_texture[resultID.split('/')[-1]] = f"{math.floor(score * 100):.2f}%"
 
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
-time_texture = {"Elapsed Time": elapsed_time, "Number of Matches": match}
+result_texture["Elapsed Time"] = elapsed_time
+result_texture["Number of Matches"] = match
 
-with open('src/conf/time_texture.json', 'w') as file:
-    json.dump(time_texture, file, indent=4)
+with open('src/conf/result_texture.json', 'w') as file:
+    json.dump(result_texture, file, indent=4)

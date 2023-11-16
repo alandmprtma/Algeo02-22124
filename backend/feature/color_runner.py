@@ -15,26 +15,19 @@ features = cd.describe(query) # Mendeskripsikan fitur warna dari gambar query de
 searcher = ColorSearcher('src/conf/conf_color.csv') # Inisiasi ColorSearcher dengan path indeks di src
 results = searcher.search(features) # Melakukan pencarian kemiripan fitur dengan fitur query
 
-# cv2.imshow("Gambar yang dicari", query) # Menampilkan gambar query
-
 match = 0
-result_color = []
+result_color = {}
 for (score, resultID) in results:
     if score * 100 > 60:  # Hanya tampilkan jika kemiripan di atas 60%
         result = cv2.imread(resultID) # Membaca gambar hasil dengan OpenCV
-        # cv2.imshow("Hasil", result) # Menampilkan hasil
-        # print(f"Kemiripan: {math.floor(score * 100):.2f}%") # Menampilkan persentase kemiripan
-        result_color.append({"Nama File": resultID, "Persentase Kemiripan": f"{math.floor(score * 100):.2f}%"})
+        result_color[resultID.split('/')[-1]] = f"{math.floor(score * 100):.2f}%"
         match += 1
-        # cv2.waitKey(0) # Menunggu pengguna menekan tombol
-
-with open('src/conf/result_color.json', 'w') as file:
-    json.dump(result_color, file, indent=4)
 
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
-time_color = {"Elapsed Time": elapsed_time, "Number of Matches": match}
+result_color["Elapsed Time"] = elapsed_time
+result_color["Number of Matches"] = match
 
-with open('src/conf/time_color.json', 'w') as file:
-    json.dump(time_color, file, indent=4)
+with open('src/conf/result_color.json', 'w') as file:
+    json.dump(result_color, file, indent=4)
