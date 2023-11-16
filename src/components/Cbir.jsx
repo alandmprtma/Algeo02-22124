@@ -20,6 +20,12 @@ const Cbir = () => {
   const [uploadDataset, setUploadDataset] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState(false);
+  const timecolor = dataColor['Elapsed Time'];
+  const formattedtimecolor = parseFloat(timecolor).toFixed(3);
+  const timetexture = dataTexture['Elapsed Time'];
+  const formattedtimetexture = parseFloat(timetexture).toFixed(3);
+  const numbercolor = dataColor['Number of Matches'];
+  const numbertexture = dataTexture['Number of Matches'];
 
   const images = {};
 
@@ -116,12 +122,14 @@ const Cbir = () => {
         <h2 className='font-inter-bold text-xl text-white h-fit'> Result : </h2>
        </div>
        <div>
-        <h2 className='font-inter text-xl text-white h-fit'> 20 results in 0.20 seconds</h2>
        </div>
         </div>
-        {
-          search && <MainPagination imageData={dataTexture} />
-        } 
+          {search && (
+            <div>
+              <p className='font-inter text-xl text-white h-fit'> {numbertexture} results in {formattedtimetexture} seconds</p>
+              <MainPagination imageData={dataTexture} />
+            </div>
+          )}
       </div>
       <imageScraper/>
        <div className="bg-white h-[2px] w-full"/>
