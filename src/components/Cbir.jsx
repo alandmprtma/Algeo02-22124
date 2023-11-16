@@ -6,7 +6,7 @@ import upload from '../uploads/uploaded.jpg'
 import ImageUploader from './ImageUploader'
 import CameraUploader from './CameraUploader'
 import { useState } from 'react';
-import Switch from './Switch'
+// import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
 import MainPagination from './MainPagination'
 import dataJSON from '../conf/hasil.json'
@@ -21,14 +21,19 @@ const Cbir = () => {
   const [uploadDataset, setUploadDataset] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState(false);
+  const [isTexture, setIsTexture] = useState(true);
   const timecolor = dataColor['Elapsed Time'];
   const formattedtimecolor = parseFloat(timecolor).toFixed(3);
   const timetexture = dataTexture['Elapsed Time'];
   const formattedtimetexture = parseFloat(timetexture).toFixed(3);
   const numbercolor = dataColor['Number of Matches'];
   const numbertexture = dataTexture['Number of Matches'];
-
+  
   const images = {};
+
+  const handleSwitchChange = () => {
+    setIsTexture((prev) => !prev);
+  };
 
   const importAllImages = (context) => {
     context.keys().forEach((key) => {
@@ -108,14 +113,23 @@ const Cbir = () => {
         {uploadMode === 'image' ? 'Switch to Camera' : 'Switch to Image'}
       </button>
       </div>
-      <Switch/>
+      <div className="switch-container">
+        <div className="switch-labels w-[250px] flex justify-between">
+            <span className={`switch-left-label text-white font-inter ${isTexture ? 'active' : 'font-inter-bold'}`}>Color</span>
+            <span className={`switch-right-label text-white font-inter ${isTexture ? 'font-inter-bold' : 'active'}`}>Texture</span>
+        </div>
+        <label className={`switch ${isTexture ? 'switch-left' : 'switch-right'}`}>
+          <input type="checkbox" checked={isTexture} onChange={handleSwitchChange} />
+          <span className="slider round"></span>
+        </label>
+      </div>
         <div
           className='rounded my-[25px] w-[175px] h-[35px] relative 
           before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
           after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'
           style={{ display: uploadMode === 'image' ? 'flex' : 'none'}}
         >
-          <button className='font-inter-bold text-xl text-white z-10 hover:scale-105 cursor-pointer transition-all' onClick={searchHandler}>Search</button>
+          <button className='font-inter-bold text-xl text-white z-10 hover:scale-105 cursor-pointer transition-all' onClick={searchHandler}>Show Result</button>
         </div>
         </div>
       </div>
@@ -130,12 +144,14 @@ const Cbir = () => {
        <div>
        </div>
         </div>
-          {search && (
-            <div>
-              <p className='font-inter text-xl text-white h-fit'> {numbertexture} results in {formattedtimetexture} seconds</p>
-              <MainPagination imageData={dataTexture} />
-            </div>
-          )}
+        {search && (
+          <div>
+            <p className='font-inter text-xl text-white h-fit'> {isTexture ? numbertexture : numbercolor} results in {isTexture ? formattedtimetexture : formattedtimecolor} seconds</p>
+            <MainPagination imageData={isTexture ? dataTexture : dataColor} />
+          </div>
+        )}
+
+
       </div>
        <div className="bg-white h-[2px] w-full mt-4"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>

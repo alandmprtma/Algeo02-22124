@@ -3,7 +3,7 @@ import numpy as np
 import csv
 
 class ColorSearcher:
-    def __init__(self, indexPath, blocks = 4):
+    def __init__(self, indexPath, blocks = 2):
         self.indexPath = indexPath # Menyimpan lokasi dari indeks file csv
         self.blocks = blocks # Menyimpan jumlah blok
 
