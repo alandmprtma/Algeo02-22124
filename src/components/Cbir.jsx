@@ -8,18 +8,39 @@ import CameraUploader from './CameraUploader'
 import { useState } from 'react';
 import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
-// import Pagination from './Pagination.jsx'
-import aland from '../assets/Aland.jpg'
-import foto1 from '../assets/foto1.png'
-import qika from '../assets/qika.jpg'
-import ikhwan from '../assets/ikhwan.jpg'
-import ImageScraper from './ImageScraper'
-
-
+import MainPagination from './MainPagination'
+import dataJSON from '../conf/hasil.json'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadDataset, setUploadDataset] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const images = {};
+
+  const importAllImages = (context) => {
+    context.keys().forEach((key) => {
+      const imageName = key.replace('./', '').replace('.jpg', '');
+      images[imageName] = context(key).default;
+    });
+  };
+
+
+  const itemsPerPage = 12 
+
+  const pageCount = Math.ceil((Object.keys(images)?.length || 0) / itemsPerPage);
+
+  const displayedFiles = Object.keys(images)
+    ? Object.keys(images).slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage
+      )
+    : [];
+
+    const handlePageClick = (data) => {
+      setCurrentPage(data.selected);
+    };
 
   const toggleUploadMode = () => {
     setUploadMode((prevMode) => (prevMode === 'image' ? 'camera' : 'image'));
@@ -30,7 +51,7 @@ const Cbir = () => {
     setUploadedImage(image);
   };
 
-  const images = [foto1, aland, ikhwan, qika];
+  // const images = [foto1, aland, ikhwan, qika];
 
   return (
     <section className='text-center flex flex-col items-center gap-y-4 pt-8'>
@@ -76,20 +97,23 @@ const Cbir = () => {
         </div>
       </div>
       </article>
-      <article className='w-[80%] flex flex-col items-center'>
+      <article className='w-[80%] flex flex-col justify-center items-center'>
        <div className="bg-white h-[2px] w-full"/>
-       <div className=" flex flex-row relative h-[900px] w-full justify-between">
+       <div className=" flex flex-col relative h-[900px] w-full justify-between">
+        <div className='flex justify-between items-center mt-4'>
         <div className='flex items-start h-[25px]'>
-        <h2 className='font-inter-bold text-xl text-white mt-6 h-fit'> Result : </h2>
+        <h2 className='font-inter-bold text-xl text-white h-fit'> Result : </h2>
        </div>
        <div>
-        <h2 className='font-inter text-xl text-white mt-6 h-fit'> 20 results in 0.20 seconds</h2>
+        <h2 className='font-inter text-xl text-white h-fit'> 20 results in 0.20 seconds</h2>
        </div>
+        </div>
+        
+       <MainPagination imageData={dataJSON} />
       </div>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
-           <DatasetUploader/>
-           <ImageScraper/>
+           <DatasetUploader />
         </div>
         <div className='h-[100px] w-full'/>
       </article>
