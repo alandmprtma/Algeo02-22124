@@ -11,12 +11,15 @@ import DatasetUploader from './DatasetUploader'
 import MainPagination from './MainPagination'
 import dataJSON from '../conf/hasil.json'
 import dataColor from '../conf/result_color.json'
+import dataTexture from '../conf/result_texture.json'
+import imageScraper from './ImageScraper'
 
 const Cbir = () => {
   const [uploadMode, setUploadMode] = useState('image'); // 'image' or 'camera'
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadDataset, setUploadDataset] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [search, setSearch] = useState(false);
 
   const images = {};
 
@@ -54,6 +57,10 @@ const Cbir = () => {
 
   // const images = [foto1, aland, ikhwan, qika];
 
+  const searchHandler = () => {
+    setSearch((prev) => !prev);
+  }
+
   return (
     <section className='text-center flex flex-col items-center gap-y-4 pt-8'>
       <img src={Bg} className='w-full h-full top-0 fixed left-0 z-[-100] object-cover'/>
@@ -85,22 +92,25 @@ const Cbir = () => {
         <div className='rounded my-[25px] w-[250px] h-[35px] relative 
           before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
           after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
-        <button className={`font-inter-bold text-xl text-white z-10 ${uploadMode === 'image'}`} onClick={toggleUploadMode}> 
+        <button className={`font-inter-bold text-xl hover:scale-105 cursor-pointer transition-all text-white z-10 ${uploadMode === 'image'}`} onClick={toggleUploadMode}> 
         {uploadMode === 'image' ? 'Switch to Camera' : 'Switch to Image'}
       </button>
       </div>
-      < Switch/>
-       <div className='rounded my-[25px] w-[175px] h-[35px] relative 
+      <Switch/>
+        <div
+          className='rounded my-[25px] w-[175px] h-[35px] relative 
           before:content-[""] before:absolute before:top-0 before:left-0 before:h-[100%] before:w-[100%] before:bg-gradient before:-z-1 before:rounded-[20px]
-          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'>
-            <p className='font-inter-bold text-xl text-white z-10'>Search</p>
-          </div>
+          after:content-[""] after:absolute after:top-0 after:left-0 after:h-[100%] after:w-[100%] after:bg-gradient after:blur-[20px] after:-z-1 flex items-center justify-center after:rounded-[15px]'
+          style={{ display: uploadMode === 'image' ? 'flex' : 'none'}}
+        >
+          <button className='font-inter-bold text-xl text-white z-10 hover:scale-105 cursor-pointer transition-all' onClick={searchHandler}>Search</button>
+        </div>
         </div>
       </div>
       </article>
       <article className='w-[80%] flex flex-col justify-center items-center'>
        <div className="bg-white h-[2px] w-full"/>
-       <div className=" flex flex-col relative h-[900px] w-full justify-between">
+       <div className=" flex flex-col relative h-[950px] w-full justify-between">
         <div className='flex justify-between items-center mt-4'>
         <div className='flex items-start h-[25px]'>
         <h2 className='font-inter-bold text-xl text-white h-fit'> Result : </h2>
@@ -109,9 +119,11 @@ const Cbir = () => {
         <h2 className='font-inter text-xl text-white h-fit'> 20 results in 0.20 seconds</h2>
        </div>
         </div>
-        
-       <MainPagination imageData={dataColor} />
+        {
+          search && <MainPagination imageData={dataTexture} />
+        } 
       </div>
+      <imageScraper/>
        <div className="bg-white h-[2px] w-full"/>
        <div className='mt-8 mb-10 w-[250px] h-[35px] relative'>
            <DatasetUploader />

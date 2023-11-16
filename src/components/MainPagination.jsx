@@ -5,7 +5,6 @@ const MainPagination = ({ imageData }) => {
   const [images, setImages] = useState([]); // State untuk menyimpan gambar
 
   const itemsPerPage = 6;
-  const imagesPerRow = 3;
 
   const imageKeys = Object.keys(imageData).filter(key => key !== 'Elapsed Time' && key !== 'Number of Matches');
   const totalPages = Math.ceil(imageKeys.length / itemsPerPage);
@@ -21,16 +20,18 @@ const MainPagination = ({ imageData }) => {
 
     const images = await Promise.all(pageImages.map(async (key, index) => {
       const { default: ImageComponent } = await import(/* webpackMode: "eager" */ `../database/${key}`);
+      const percentage = imageData[key]; // Ambil persentase langsung dari data JSON
       
       return (
-      <div key={index} className="image-item-wrapper w-[33.33%] p-2">
-        <img
-          key={index}
-          src={ImageComponent}
-          alt={key}
-          className="image-item h-[350px] w-[350px] object-cover"
-        />
-      </div>
+        <div key={index} className="image-item-wrapper w-[33.33%] p-2">
+          <img
+            key={index}
+            src={ImageComponent}
+            alt={key}
+            className="image-item h-[350px] w-[350px] object-cover rounded-xl"
+          />
+          <div className="font-inter-bold text-white">{percentage}</div>
+        </div>
       );
     }));
 

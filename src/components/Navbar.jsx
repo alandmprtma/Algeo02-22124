@@ -8,17 +8,17 @@ const Navbar = () => {
     <img src={icon} className='h-[25px] ml-[25px]'/>
       <ul className='flex flex-row gap-x-[170px]'>
         <li>
-          <Link to="/">
+          <Link to="/" className='hover:text-black cursor-pointer transition-all'>
             <span className='font-inter-bold'>Home</span>
           </Link>
         </li>
         <li>
-          <Link to="/cbir">
+          <Link to="/cbir" className='hover:text-black cursor-pointer transition-all'>
           <span className='font-inter-bold'>CBIR</span>
             </Link>
         </li>
         <li>
-          <Link to="/about-us">
+          <Link to="/about-us" className='hover:text-black cursor-pointer transition-all'>
             <span className='font-inter-bold'>About Us</span> 
           </Link>
         </li>
