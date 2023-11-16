@@ -7,7 +7,7 @@ const MainPagination = ({ imageData }) => {
   const itemsPerPage = 6;
   const imagesPerRow = 3;
 
-  const imageKeys = Object.keys(imageData).filter(key => key !== 'Time');
+  const imageKeys = Object.keys(imageData).filter(key => key !== 'Elapsed Time' && key !== 'Number of Matches');
   const totalPages = Math.ceil(imageKeys.length / itemsPerPage);
 
   useEffect(() => {
