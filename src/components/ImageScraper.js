@@ -19,13 +19,15 @@ const ImageScraper = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Input:
-        <input type="text" value={input} onChange={handleChange} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'row' }}>
+        <label>
+          Input:
+          <input type="text" value={input} onChange={handleChange} />
+        </label>
+        <button type="submit" style={{ marginLeft: '10px' }}>Submit</button>
+      </form>
+    </div>
   );
 };
 
