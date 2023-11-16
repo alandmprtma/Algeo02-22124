@@ -28,6 +28,9 @@ for (score, resultID) in results:
         match += 1
         result_texture[resultID.split('/')[-1]] = f"{math.floor(score * 100):.2f}%"
 
+# Mengurutkan result_texture berdasarkan nilai kemiripan
+result_texture = {k: v for k, v in sorted(result_texture.items(), key=lambda item: float(item[1][:-1]), reverse=True)}
+
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
