@@ -15,11 +15,11 @@ Kelompok Ga-Reela
 ## Deskripsi
 Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk mencari dan mengambil gambar berdasarkan isi visualnya. Proses ini dimulai dengan mengekstrak fitur-fitur penting dari gambar, seperti warna, tekstur, dan bentuk. Setelah fitur-fitur ini diekstrak, mereka diwakili dalam bentuk vektor atau deskripsi numerik yang dapat dibandingkan dengan gambar lain. Selanjutnya, CBIR menggunakan algoritma pencocokan untuk membandingkan vektor fitur dari gambar yang dicari dengan vektor fitur gambar dalam dataset.
 ## Screenshots
-# Tampilan Home Page
+### Tampilan Home Page
 ![Home Page](./img/tampilan-home.jpg)
-# Tampilan CBIR
+### Tampilan CBIR
 ![CBIR](./img/tampilan-cbir.jpg)
-# Tampilan About Us
+### Tampilan About Us
 ![About Us](./img/tampilan-aboutus.jpg)
 
 ## Project Status
@@ -107,10 +107,10 @@ Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk m
 Berikut adalah cara pengaturan program sesuai dengan dependencies yang digunakan:
 1. Clone repository pada local files anda, repository dapat diakses melalui pranala berikut.
 2. Buka terminal, pastikan directory terminal berada di `Algeo02-22124`.
-# Konfigurasi front-end:
+### Konfigurasi front-end:
 1. Jalankan perintah `npm install` untuk mengaktifkan framework react-JS di dalam local anda.
 2. Jalankan perintah `npm install react-router-dom` untuk mengaktifkan pustaka routing ke path-path lain.  
-# Konfigurasi back-end:
+### Konfigurasi back-end:
 1. Jalankan perintah `pip install opencv-python` untuk mengaktifkan pustaka pengolahan citra.
 2. Jalankan perintah `pip install numpy` untuk mengaktifkan pustaka perhitungan matematis dari python.
 3. Jalankan perintah `pip install joblib` yang kami gunakan guna membantu pemrosesan parallel.
