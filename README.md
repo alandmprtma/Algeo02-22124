@@ -15,9 +15,13 @@ Kelompok Ga-Reela
 ## Deskripsi
 Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk mencari dan mengambil gambar berdasarkan isi visualnya. Proses ini dimulai dengan mengekstrak fitur-fitur penting dari gambar, seperti warna, tekstur, dan bentuk. Setelah fitur-fitur ini diekstrak, mereka diwakili dalam bentuk vektor atau deskripsi numerik yang dapat dibandingkan dengan gambar lain. Selanjutnya, CBIR menggunakan algoritma pencocokan untuk membandingkan vektor fitur dari gambar yang dicari dengan vektor fitur gambar dalam dataset.
 ## Screenshots
+# Tampilan Home Page
 ![Home Page](./img/tampilan-home.jpg)
+# Tampilan CBIR
 ![CBIR](./img/tampilan-cbir.jpg)
+# Tampilan About Us
 ![About Us](./img/tampilan-aboutus.jpg)
+
 ## Project Status
 | Fitur | Status |
 | :---: | :---: |
