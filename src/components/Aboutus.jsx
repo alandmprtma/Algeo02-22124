@@ -1,5 +1,4 @@
 import React from 'react'
-import foto1 from '../assets/foto1.png'
 import asistenLeon from '../assets/asistenLeon.jpg'
 import qika from '../assets/qika.jpg'
 import aland from '../assets/Aland.jpg'
