@@ -6,6 +6,7 @@ Image Retrieval System Program
 * [Anggota](#anggota)
 
 ## Anggota
+IF 2123 - K3 - GaReela
 | Nama | NIM |
 |---|---|
 | Aland Mulia Pratama | 13522124 |
