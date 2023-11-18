@@ -34,74 +34,52 @@ Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk m
 
 ## Structures
 ```bash
-.
-│   README.md
-│   requirements.txt
-│
-├───src
-│   │   app.py
-│   │   Eigen.py
-│   │   SVD.py
-│   │
-│   ├───static
-│   │   ├───images
-│   │   │       imageNotAvailable.png
-│   │   │       logo.png
-│   │   │       logoSmall.png
-│   │   │
-│   │   └───styles
-│   │           frontpage.css
-│   │
-│   └───templates
-│           frontpage.html
-│
-└───test
-    ├───pdf
-    │   ├───1
-    │   │       100%_ori.jpg
-    │   │       2%.jpg
-    │   │       20%.jpg
-    │   │       40%.jpg
-    │   │       80%.jpg
-    │   │
-    │   ├───2
-    │   │       100%_ori.jpg
-    │   │       2%.jpg
-    │   │       20%.jpg
-    │   │       40%.jpg
-    │   │       80%.jpg
-    │   │
-    │   ├───3
-    │   │       100%_ori.jpg
-    │   │       2%.jpg
-    │   │       20%.jpg
-    │   │       40%.jpg
-    │   │       80%.jpg
-    │   │
-    │   ├───4
-    │   │       100%_ori.jpg
-    │   │       2%.jpg
-    │   │       20%.jpg
-    │   │       40%.jpg
-    │   │       80%.jpg
-    │   │
-    │   ├───5
-    │   │       100%_ori.png
-    │   │       2%.png
-    │   │       20%.png
-    │   │       40%.png
-    │   │       80%.png
-    │   │
-    │   └───6
-    │           100%_ori.png
-    │           2%.png
-    │           20%.png
-    │           40%.png
-    │           80%.png
-    │
-    └───website
-            1.png
-            2.png
+Algeo02-22124
+├── back-end
+│   ├── app
+│   │    └── api.py
+│   ├── feature
+│   │    ├── color_descriptor.py
+│   │    ├── color_runner.py
+│   │    ├── color_searcher.py
+│   │    ├── database_init.py
+│   │    ├── texture_descriptor.py
+│   │    ├── texture_runner.py
+│   │    └── texture_searcher.py
+│   └── main.py
+├── src (front-end)
+│   ├── assets
+│   ├── components
+│   │    ├── Aboutus.jsx
+│   │    ├── CameraUploader.js
+│   │    ├── Cbir.jsx
+│   │    ├── Cybereye.jsx
+│   │    ├── DatasetUploader.js
+│   │    ├── Home.jsx
+│   │    ├── ImageScraper.js
+│   │    ├── ImageUploader.js
+│   │    ├── MainPagination.jsx
+│   │    └── Navbar.jsx
+│   ├── conf
+│   │    ├── conf_color.csv
+│   │    ├── conf_texture.csv
+│   │    ├── hasil.json
+│   │    ├── result_color.json
+│   │    └── result_texture.json
+│   ├── database
+│   ├── fonts
+│   └── uploads
+│          └── uploads.jpg
+├── img
+│   ├── tampilan-aboutus.jpg
+│   ├── tampilan-cbir.jpg
+│   └── rampilan-home.jpg
+├── App.js
+├── index.css
+├── index.js
+├── logo.svg
+├── reportWebVitals
+└── setupTests.js
 ```
 ## Konfigurasi atau Pengaturan
 Berikut adalah cara pengaturan program sesuai dengan dependencies yang digunakan:
