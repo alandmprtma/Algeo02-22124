@@ -106,5 +106,5 @@ Berikut adalah cara untuk menjalankan program:
 ## Terima Kasih
 Terima kasih kepada :
 - Tuhan YME
-- Dosen IF 2123
+- Dosen IF2123
 - Asisten Lab IRK
