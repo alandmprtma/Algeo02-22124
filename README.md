@@ -74,6 +74,8 @@ Algeo02-22124
 │   ├── tampilan-aboutus.jpg
 │   ├── tampilan-cbir.jpg
 │   └── rampilan-home.jpg
+├── doc
+│    └── Algeo02-22124.pdf
 ├── App.js
 ├── index.css
 ├── index.js
