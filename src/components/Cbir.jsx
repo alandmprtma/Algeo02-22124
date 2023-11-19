@@ -9,7 +9,6 @@ import { useState } from 'react';
 // import Switch from './Switch'
 import DatasetUploader from './DatasetUploader'
 import MainPagination from './MainPagination'
-import dataJSON from '../conf/hasil.json'
 import dataColor from '../conf/result_color.json'
 import dataTexture from '../conf/result_texture.json'
 import ImageScraper from './ImageScraper'
