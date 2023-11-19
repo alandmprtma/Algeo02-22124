@@ -3,7 +3,15 @@ Image Retrieval System Program
 # Tugas Besar 02 Aljabar Linier dan Geometri
 > Image Retrieval menggunakan cosine similarity
 ## Daftar Isi
+* [Daftar Isi](#daftar-isi)
 * [Anggota](#anggota)
+* [Deskripsi](#deskripsi)
+* [Screenshots](#screenshots)
+* [Project Status](#project-status)
+* [Penjelasan Algoritma dan Bonus](#penjelasan)
+* [Structures](#structures)
+* [Konfigurasi atau Pengaturan](#konfigurasi)
+* [Cara Menjalankan](#cara-menjalankan)
 
 ## Anggota
 Kelompok Ga-Reela
@@ -31,7 +39,7 @@ Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk m
 | Bonus (Image Scrapping) | Selesai |
 | Bonus Video | Selesai |
 ## Penjelasan Algoritma dan Bonus
-
+https://youtu.be/qON9X1uillo 
 ## Structures
 ```bash
 Algeo02-22124
@@ -76,6 +84,14 @@ Algeo02-22124
 │   └── rampilan-home.jpg
 ├── doc
 │    └── Algeo02-22124.pdf
+├── test
+│   ├── dataset1
+│   ├── dataset2
+│   ├── scraping1
+│   ├── scraping2
+│   ├── dataset1
+│   ├── input-gradient.png
+│   └── input-naruto.png
 ├── App.js
 ├── index.css
 ├── index.js
