@@ -1,110 +1,75 @@
-# Algeo02-22124
-Image Retrieval System Program
-# Tugas Besar 02 Aljabar Linier dan Geometri
-> Image Retrieval menggunakan cosine similarity
-## Daftar Isi
-* [Anggota](#anggota)
+<div align="center">
+  <img src="src/assets/ga-reela-white-transparent.png" alt="Home Page" width="250"/>
+</div>
 
-## Anggota
-Kelompok Ga-Reela
-| Nama | NIM |
-|---|---|
-| Aland Mulia Pratama | 13522124 |
-| Rizqika Mulia Pratama | 13522126 |
-| Ikhwan Al Hakim | 13522147 |
-## Deskripsi
-Pencarian dan Pengambilan Gambar Berbasis Konten (CBIR) merupakan proses untuk mencari dan mengambil gambar berdasarkan isi visualnya. Proses ini dimulai dengan mengekstrak fitur-fitur penting dari gambar, seperti warna, tekstur, dan bentuk. Setelah fitur-fitur ini diekstrak, mereka diwakili dalam bentuk vektor atau deskripsi numerik yang dapat dibandingkan dengan gambar lain. Selanjutnya, CBIR menggunakan algoritma pencocokan untuk membandingkan vektor fitur dari gambar yang dicari dengan vektor fitur gambar dalam dataset.
-## Screenshots
-### Tampilan Home Page
-![Home Page](./img/tampilan-home.jpg)
-### Tampilan CBIR
-![CBIR](./img/tampilan-cbir.jpg)
-### Tampilan About Us
-![About Us](./img/tampilan-aboutus.jpg)
+# 📸 Ga-Reela: Image Retrieval System Program
 
-## Project Status
-| Fitur | Status |
-| :---: | :---: |
-| CBIR Paramater Warna| Selesai |
-| CBIR Paramater Tekstur| Selesai |
-| Bonus (Kamera) | Selesai |
-| Bonus (Image Scrapping) | Selesai |
-| Bonus Video | Selesai |
-## Penjelasan Algoritma dan Bonus
+> 🌐 Image Retrieval using cosine similarity
 
-## Structures
+🎓 **Project Background:**
+I created the CBIR website named "Ga-Reela" as part of my Linear Algebra and Geometry assignment during my third semester in the Computer Science program at ITB.
+
+## 📝 Description
+Content-Based Image Retrieval (CBIR) is a process for searching and retrieving images based on their visual content. This project, developed for the Linear Algebra and Geometry course assignment, starts by extracting essential features from images, such as color, texture, and shape. These features are then represented as vectors or numerical descriptors for comparison with other images. CBIR uses matching algorithms to compare feature vectors, enabling image retrieval within a dataset.
+
+## 📁 Project Structure
 ```bash
 Algeo02-22124
 ├── back-end
 │   ├── app
-│   │    └── api.py
+│   │   └── api.py
 │   ├── feature
-│   │    ├── color_descriptor.py
-│   │    ├── color_runner.py
-│   │    ├── color_searcher.py
-│   │    ├── database_init.py
-│   │    ├── texture_descriptor.py
-│   │    ├── texture_runner.py
-│   │    └── texture_searcher.py
+│   │   ├── color_descriptor.py
+│   │   ├── color_runner.py
+│   │   ├── color_searcher.py
+│   │   ├── database_init.py
+│   │   ├── texture_descriptor.py
+│   │   ├── texture_runner.py
+│   │   └── texture_searcher.py
 │   └── main.py
 ├── src (front-end)
-│   ├── assets
-│   ├── components
-│   │    ├── Aboutus.jsx
-│   │    ├── CameraUploader.js
-│   │    ├── Cbir.jsx
-│   │    ├── Cybereye.jsx
-│   │    ├── DatasetUploader.js
-│   │    ├── Home.jsx
-│   │    ├── ImageScraper.js
-│   │    ├── ImageUploader.js
-│   │    ├── MainPagination.jsx
-│   │    └── Navbar.jsx
-│   ├── conf
-│   │    ├── conf_color.csv
-│   │    ├── conf_texture.csv
-│   │    ├── hasil.json
-│   │    ├── result_color.json
-│   │    └── result_texture.json
-│   ├── database
-│   ├── fonts
-│   └── uploads
-│          └── uploads.jpg
-├── img
-│   ├── tampilan-aboutus.jpg
-│   ├── tampilan-cbir.jpg
-│   └── rampilan-home.jpg
-├── App.js
-├── index.css
-├── index.js
-├── logo.svg
-├── reportWebVitals
-└── setupTests.js
+│   ├── assets, components, conf, database, fonts, uploads
+│   └── img (aboutus-preview.jpg, cbir-preview.jpg, home-preview.jpg)
+├── App.js, index.css, index.js, logo.svg, reportWebVitals, setupTests.js
 ```
-## Konfigurasi atau Pengaturan
-Berikut adalah cara pengaturan program sesuai dengan dependencies yang digunakan:
-1. Clone repository pada local files anda, repository dapat diakses melalui pranala berikut.
-2. Buka terminal, pastikan directory terminal berada di `Algeo02-22124`.
-### Konfigurasi front-end:
-1. Jalankan perintah `npm install` untuk mengaktifkan framework react-JS di dalam local anda.
-2. Jalankan perintah `npm install react-router-dom` untuk mengaktifkan pustaka routing ke path-path lain.  
-### Konfigurasi back-end:
-1. Jalankan perintah `pip install opencv-python` untuk mengaktifkan pustaka pengolahan citra.
-2. Jalankan perintah `pip install numpy` untuk mengaktifkan pustaka perhitungan matematis dari python.
-3. Jalankan perintah `pip install joblib` yang kami gunakan guna membantu pemrosesan parallel.
-4. Jalankan perintah `npm install -g concurrently` untuk menjalankan frontend dan backend dalam satu localhost yang sama.
-5. Jalankan perintah 'npm install axios' untuk menerima ataupun mengirim response.
-## Cara Menjalankan
-Berikut adalah cara untuk menjalankan program:
-1. Ubahlah directory terminal ke dalam folder `Algeo02-22124`.
-2. Jalankan `npm start`.
-3. Pindah ke halaman CBIR melalui `Navigation Bar` pada website dan unggah dataset pada tombol `upload dataset`.
-4. Anda juga bisa menggunakan dataset melalui sebuah situs web dengan tombol `switch to image scraper`.
-5. Pilih gambar yang ingin dicari dalam dataset dengan menekan tombol `upload image`.
-6. Anda juga dapat memilih alternatif input gambar yaitu dengan kamera secara real time dengan menekan tombol `switch to camera`.
 
-## Terima Kasih
-Terima kasih kepada :
-- Tuhan YME
-- Dosen IF2123
-- Asisten Lab IRK
+## Configuration Guide
+
+### Front-End Setup:
+1. Clone the repository to your local files. Access the repository [here](repository-link).
+2. Open the terminal and ensure that the directory is set to `Ga-Reela-Content-Based-Image-Retrieval`.
+3. Run `npm install` to activate the React-JS framework locally.
+4. Execute `npm install react-router-dom` to enable routing to different paths.
+
+### Back-End Configuration:
+1. Run `pip install opencv-python` for image processing library activation.
+2. Run `pip install numpy` for mathematical calculations in Python.
+3. Run `pip install joblib` to facilitate parallel processing.
+4. Run `npm install -g concurrently` to run both frontend and backend on the same localhost.
+5. Run 'npm install axios' to handle sending and receiving responses.
+
+## How to Run
+
+1. Change the terminal directory to `Ga-Reela-Content-Based-Image-Retrieval`.
+2. Execute `npm start`.
+3. Navigate to the CBIR page via the website's `Navigation Bar` and upload the dataset using the `upload dataset` button.
+4. Alternatively, use a website to access the dataset with the `switch to image scraper` button.
+5. Select an image for searching within the dataset by clicking the `upload image` button.
+6. Choose the real-time camera input option by pressing the `switch to camera` button.
+
+## Screenshots
+
+<div align="center">
+  <img src="img/tampilan-home.jpg" alt="Home Page" width="250"/>
+  <p><i>Home Page</i></p>
+</div>
+
+<div align="center">
+  <img src="img/tampilan-aboutus.jpg" alt="About Us" width="250"/>
+  <p><i>About Us Page</i></p>
+</div>
+
+<div align="center">
+  <img src="img/tampilan-cbir.jpg" alt="CBIR" width="250"/>
+  <p><i>CBIR Page</i></p>
+</div>
